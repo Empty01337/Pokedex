@@ -1,3 +1,4 @@
+// Execute la requête pour avoir les pokemons et les stocke dans la fenêtre
 async function storeAllPokemons(limit, offset) {
   const pokemonsResult = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
   const pokemons = await pokemonsResult.json();
@@ -14,6 +15,7 @@ async function storeAllPokemons(limit, offset) {
   displayPokemons(enhancedPokemons);
 }
 
+// Affiche les pokemons sous forme de liste
 async function displayPokemons(pokemons) {
   const display = document.getElementById("display");
   display.innerHTML = "";
@@ -37,6 +39,7 @@ async function displayPokemons(pokemons) {
   }
 }
 
+// Genere les types sous forme de vignettes
 function getPokemonTypes(types) {
   let element = "";
   types.map((type) => {
@@ -45,11 +48,13 @@ function getPokemonTypes(types) {
   return element;
 }
 
+// Retourne un pokemon selon son id
 function getPokemonFromWindow(id) {
   const pokemon = window.pokemons.find(p => p.id == id);
   return pokemon;
 }
 
+// Joue le son des pokemons : !! Ne pas augmenter le volume 
 function playPokemonSound(pokemon) {
   if (pokemon.cries?.legacy) {
     const audio = new Audio(pokemon.cries.legacy);
@@ -58,6 +63,7 @@ function playPokemonSound(pokemon) {
   }
 }
 
+// Permet de nettoyer le nom des stats
 function getStatName(statId) {
   switch (statId) {
     case "hp":
@@ -77,6 +83,7 @@ function getStatName(statId) {
   }
 }
 
+// Genere les statistiques du pokemon
 function getStats(pokemon) {
   let stats = "";
   pokemon.stats.map((s) => {
@@ -88,11 +95,13 @@ function getStats(pokemon) {
   return stats;
 }
 
+// Ferme l'affichage du pokemon
 function closePokecard() {
   const display = document.getElementById("pokemon-data");
   display.innerHTML = `<span class="text-center">Select a Pokemon !</span>`;
 }
 
+// Genere l'affichage du pokemon
 async function displayPokemon(id) {
   const pokemon = getPokemonFromWindow(id);
   playPokemonSound(pokemon);
@@ -142,6 +151,7 @@ async function displayPokemon(id) {
                       </div>`;
 }
 
+// Permet de filtrer
 async function search(searchValue) {
   const filteredPokemons = window.pokemons.filter((p) =>
     p.name.includes(searchValue.toLowerCase()) || p.types.find(t => t.type.name.includes(searchValue.toLowerCase())) || p.id.toString().padStart(4, "0").includes(searchValue.toLowerCase())
@@ -149,6 +159,7 @@ async function search(searchValue) {
   displayPokemons(filteredPokemons);
 }
 
+// Genere une recherche avec le type
 function searchType(search, event) {
   event.stopPropagation();
   const searchInput = document.getElementById("search-input");
@@ -156,6 +167,7 @@ function searchType(search, event) {
   this.search(search);
 }
 
+// Permet de changer de generation de pokemon
 async function changePokemonGeneration(generation) {
   window.pokemonGeneration = generation;
   const searchInput = document.getElementById("search-input");
@@ -193,4 +205,5 @@ async function changePokemonGeneration(generation) {
   this.search(searchInput?.value ?? "");
 }
 
+// Premier appel pour charger la liste
 changePokemonGeneration(1);
