@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="Content/PokedexIcon.png">
+    <link rel="stylesheet" href="pokedex.css">
+    <script src="pokedex.js"></script>
+    <title>Pokédex</title>
+</head>
+
+<body>
+    <div class="d-flex flex-column p-5 blue-bg">
+        <div class="top-0 position-sticky blue-bg z-3">
+            <h1 class="text-center">Pokedex</h1>
+            <div class="d-flex flex-row align-items-center mt-3 mb-1">
+                <input placeholder="Search" id="search-input" onkeyup="search(event.target.value)" class="form-control w-25" type="text" />
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(1)">I</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(2)">II</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(3)">III</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(4)">IV</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(5)">V</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(6)">VI</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(7)">VII</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(8)">VIII</button>
+                <button class="btn generation ms-2" onclick="changePokemonGeneration(9)">IX</button>
+            </div>
+        </div>
+        <div id="display" class="d-flex flex-wrap mt-3">
+        </div>
+        <div id="pokemon-data" class="justify-content-center d-flex w-50 rounded-2 border pokemon-data ms-auto card p-2 mt-3 position-sticky bottom-0">
+            <span class="text-center">Select a Pokemon !</span>
+        </div>
+    </div>
+</body>
+
+</html>
