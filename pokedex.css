@@ -34,6 +34,8 @@ span::first-letter {
     transform: scale(1.2);
 }
 
+
+/* Classes des types */
 .grass {
     background-color: #3DA224;
 }
